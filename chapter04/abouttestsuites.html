@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<html dir="rtl" lang="ar">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      4.6. حول اختبار الحزم
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.78.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body class="lfs" id="lfs-8.1">
+    <div class="navheader">
+      <h4>
+        لينكس من الصفر - الإصدار 8.1
+      </h4>
+      <h3>
+      الفصل 4. التحضيرات النهائي
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="aboutsbus.html" title="About SBUs">السابق</a>
+          <p>
+            حول <<وبق>>
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="../chapter05/chapter05.html" title=
+          "Constructing a Temporary System">التالى</a>
+          <p>
+            بناء نظام مؤقت
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter04.html" title=
+          "Chapter&nbsp;4.&nbsp;Final Preparations">إلى أعلى</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - Version 8.1 ">الصفحة الرئيسية</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="prepare-abouttestsuites" name=
+        "prepare-abouttestsuites"></a>4.6. حول اختبار الحزم
+      </h1>
+      <p>
+        معظم الحزم توفر اختبار الحزمة المبنية. تشغيل اختبار الحزمة
+		لحزمة بنيت حديثا فكرة جيدة لأنها تمكن من توفير 
+        <span class="quote">&ldquo;<span class="quote">التحقق من الاستقامة
+		</span>&rdquo;</span> لتدل إلى أن كل شيء بنيا بشكل صحيح.
+		 اختبار الحزمة الذي يمر بمجموعة من التحقيقات
+		 يثبت عادة أن الحزمة تعمل كما المطور معدها.
+		 إلا أنه لا يضمن أن الحزمة خالية تماما من الأخطاء.
+      </p>
+      <p>
+        بعض اختبار الحزم هي أكثر أهمية من غيرها. على سبيل المثال،
+		اختبار الحزمة لحزم سلسلة الأدوات الأساسية&mdash;GCC, Binutils, and
+        Glibc&mdash;هي ذات أهمية قصوى نظرا لدورها المركزي في عمل
+		 النظام بشكل سليم. يمكن أن يستغرق اختبار الحزم لكل
+		 من GCC  و Glibc وقتا طويلا جدا، وخاصة على
+		 الأجهزة البطيئة، ولكن يوصى به بشدة.
+      </p>
+      <div class="admon note">
+        <img alt="[Note]" src="../images/note.png" />
+        <h3>
+          ملاحظة
+        </h3>
+        <p>
+          وقد أظهرت التجربة أن هناك القليل الذي يمكن كسبه من تشغيل اختبار الحزم في 
+		  <a class="xref" href=
+          "../chapter05/chapter05.html" title=
+          "Chapter&nbsp;5.&nbsp;Constructing a Temporary System">الفصل 5
+		  </a>. لا يمكن أن يكون هناك هرب من حقيقة أن النظام المضيف
+		يمارس دائما بعض التأثير على الاختبارات في هذا الفصل،
+		وغالبا ما يسبب فشل لا يمكن تفسيره. لأن الأدوات التي بنيت في <a class=
+          "xref" href="../chapter05/chapter05.html" title=
+          "Chapter&nbsp;5.&nbsp;Constructing a Temporary System">الفصل 5
+		  </a>  هي مؤقتة وفي نهاية المطاف نتخلص منها، ونحن لا ننصح بتشغيل أجنحة الاختبار في 
+		  <a class="xref" href=
+          "../chapter05/chapter05.html" title=
+          "Chapter&nbsp;5.&nbsp;Constructing a Temporary System">الفصل 5
+		  </a> للقارئ العادي. يتم توفير التعليمات لتشغيل تلك اختبار الحزم
+		لصالح الفاحصين والمطورين، ولكنها اختيارية للغاية.
+        </p>
+      </div>
+      <p>
+        وهناك قضية مشتركة مع تشغيل اختبار الحزم لـ Binutils و
+		GCC  من خلال الطرفية الزائفة (PTYs). وهذا يمكن أن
+		 يؤدي إلى عدد كبير من الاختبارات الفاشلة. قد يحدث هذا
+		 لعدة أسباب، ولكن السبب الأكثر احتمالا هو أن النظام
+		 المضيف لا يحتوي على نظام الملفات 
+        <code class="systemitem">devpts</code> معد بشكل صحيح. وهذه المسألة  نوقشة بمزيد من التفاصيل في 
+		<a class="ulink" href="http://www.linuxfromscratch.org/lfs/faq.html#no-ptys">
+		http://www.linuxfromscratch.org/lfs/faq.html#no-ptys</a>.
+      </p>
+      <p>
+        في بعض الأحيان سوف تفشل اختبار الحزم، ولكن لأسباب أن المطورين على علم، واعتبرت غير حرجة. راجع السجلات الموجودة في 
+		<a class="ulink" href=
+        "http://www.linuxfromscratch.org/lfs/build-logs/8.1/">http://www.linuxfromscratch.org/lfs/build-logs/8.1/</a>
+         للتحقق مما إذا كان من المتوقع حدوث هذه الإخفاقات أم لا.
+		هذا الموقع صالح لجميع الاختبارات في هذا الكتاب.
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="aboutsbus.html" title="About SBUs">السابق</a>
+          <p>
+            حول <<وبق>>
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="../chapter05/chapter05.html" title=
+          "Constructing a Temporary System">التالى</a>
+          <p>
+            بناء نظام مؤقت
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter04.html" title=
+          "Chapter&nbsp;4.&nbsp;Final Preparations">إلى أعلى</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - Version 8.1 ">الصفحة الرئيسية</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

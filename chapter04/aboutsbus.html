@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<html dir="rtl" lang="ar">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      4.5. حول <<وبق>>
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.78.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body class="lfs" id="lfs-8.1">
+    <div class="navheader">
+      <h4>
+        لينكس من الصفر - الإصدار 8.1
+      </h4>
+      <h3>
+      الفصل 4. التحضيرات النهائي
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="settingenvironment.html" title=
+          "Setting Up the Environment">السابق</a>
+          <p>
+            إعداد المحيط
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="abouttestsuites.html" title=
+          "About the Test Suites">التالى</a>
+          <p>
+            حول اختبار الحزم
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter04.html" title=
+          "Chapter&nbsp;4.&nbsp;Final Preparations">إلى أعلى</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - Version 8.1 ">الصفحة الرئيسية</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="prepare-aboutsbus" name="prepare-aboutsbus"></a>4.5. حول <<وبق>>
+      </h1>
+      <p>
+        كثير من الناس يرغبون في معرفة مسبقا كم من الوقت يستغرق لبناء
+		 وتثبيت كل حزمة. لأن لينكس من الصفر يمكن أن يبنى على العديد
+		 من الانظمة المختلفة، فإنه من المستحيل توفير تقديرات الوقت بدقة.
+		 ستستغرق أكبر حزمة (Glibc) حوالي 20 دقيقة على أسرع الأنظمة،
+		 ولكن يمكن أن تستغرق ما يصل إلى ثلاثة أيام على أنظمة أبطأ! وبدلا
+		 من توفير الأوقات الفعلية، سيتم استخدام مقياس وحدة البناء القياسي
+		 <<وبق>> كوسيلة بديلة.
+      </p>
+      <p>
+        ويعمل مقياس <<وبق>> على النحو التالي. الحزمة الأولى التي سيتم بنائها
+		من هذا الكتاب هي Binutils في <a class="xref" href=
+        "../chapter05/chapter05.html" title=
+        "Chapter&nbsp;5.&nbsp;Constructing a Temporary System">الفصل 5</a>.
+         الزمن الذي يستغرق لبناء هذه الحزمة هو ما سوف
+		يشار إليه باسم <<وبق>>. وسيتم التعبير عن جميع
+		الأوقات البناء الأخرى بالنسبة لهذا الزمن.
+      </p>
+      <p>
+        على سبيل المثال، لو احدى الحزم التي يكون وقت بنائها
+		4.5 <<وبق>>. هذا يعني أنه إذا استغرق النظام 10 دقائق لبناء
+		و تثبيت المرحلة الاولى  لـ  Binutils، سوف يستغرق <span class=
+        "emphasis"><em>تقريبا</em></span> 45 دقيقة لبناء تلك الحزمة. لحسن الحظ،
+		معظم مدة البناء أقصر من  مدة البناء
+		لـ Binutils.
+      </p>
+      <p>
+        وبصفة عامة، فإن <<وبق>> ليست دقيقة تماما لأنه
+		ا تعتمد على عوامل كثيرة، بما في ذلك نسخة GCC في
+		النظام المضيف. يتم توفير هنا تقدير للمدة التي قد يستغرقها
+		لتثبيت حزمة، ولكن الأرقام يمكن أن تختلف بقدر 
+		عشرات الدقائق في بعض الحالات.
+      </p>
+      <div class="admon note">
+        <img alt="[Note]" src="../images/note.png" />
+        <h3>
+          ملاحظة
+        </h3>
+        <p>
+         بالنسبة للعديد من الأنظمة الحديثة ذات المعالجات
+		المتعددة (أو النوى) يمكن التقليل من وقت البناء للحزمة
+		عن طريق الأداء "إجراء مواز" إما بضبط متغير
+		المحيط أو إخبار البرنامج <span class="command"><strong>make</strong></span>
+         بكم عدد المعالجات المتاحة. على سبيل المثال، يمكن لـ
+		Core2Duo دعم عمليتين متزامنتين معا:
+        </p>
+        <pre class="userinput">
+<kbd class="command">export MAKEFLAGS='-j 2'</kbd>
+</pre>
+        <p>
+          أو بمجرد البناء بـ:
+        </p>
+        <pre class="userinput">
+<kbd class="command">make -j2</kbd>
+</pre>
+        <p>
+          عند استخدام معالجات متعددة بهذه الطريقة، فإن <<وبق>>
+		في الكتاب تختلف أكثر مما هي عليه عادة. في بعض الحالات، 
+		فإن خطوة make تفشل ببساطة. كما أن تحليل مخارج عملية
+		البناء سيكون أكثر صعوبة لأن خطوط العمليات المختلفة ستكون
+		مشوشة. إذا واجهت مشكلة مع خطوة بناء، يرجو العودة إلى
+		استعمال معالج واحد للبناء و لتحليل رسائل الخطأ بشكل صحيح.
+        </p>
+      </div>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="settingenvironment.html" title=
+          "Setting Up the Environment">السابق</a>
+          <p>
+            إعداد المحيط
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="abouttestsuites.html" title=
+          "About the Test Suites">التالى</a>
+          <p>
+            حول اختبار الحزم
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter04.html" title=
+          "Chapter&nbsp;4.&nbsp;Final Preparations">إلى أعلى</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - Version 8.1 ">الصفحة الرئيسية</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

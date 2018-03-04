@@ -1,0 +1,196 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<html dir="rtl" lang="ar">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      4.3. إضافة المستخدم لمص
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.78.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body class="lfs" id="lfs-8.1">
+    <div class="navheader">
+      <h4>
+        لينكس من الصفر - الإصدار 8.1
+      </h4>
+      <h3>
+      الفصل 4. التحضيرات النهائي
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="creatingtoolsdir.html" title=
+          "Creating the $LFS/tools Directory">السابق</a>
+          <p>
+            انشاء الملف LFS/tools$
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="settingenvironment.html" title=
+          "Setting Up the Environment">التالى</a>
+          <p>
+            إعداد المحيط
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter04.html" title=
+          "Chapter&nbsp;4.&nbsp;Final Preparations">إلى أعلى</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - Version 8.1 ">الصفحة الرئيسية</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="ch-tools-addinguser" name="ch-tools-addinguser"></a>4.3. إضافة المستخدم لمص
+      </h1>
+      <p>
+        عند تسجيل الدخول كمستخدم<code class="systemitem">root</code>، فعل خطأ واحد 
+		يمكن أن يضر أو يدمر النظام. لذلك،
+		نوصي ببناء الحزم في هذا الفصل كمستخدم غير مصرح.
+		يمكنك استخدام اسم المستخدم الخاص بك، ولكن لتسهيل
+		وضع محيط عمل نظيف، ننشاء مستخدم جديد يسمى <code class=
+        "systemitem">lfs</code>كعضو في مجموعة جديدة (اسمه أيضا
+        <code class="systemitem">lfs</code>) واستخدام هذا المستخدم خلال 
+		عملية التثبيت. كـ<code class="systemitem">root</code>، شغل 
+		الأوامر التالية لإضافة المستخدم الجديد:
+      </p>
+      <pre class="userinput">
+<kbd class="command">groupadd lfs
+useradd -s /bin/bash -g lfs -m -k /dev/null lfs</kbd>
+</pre>
+      <div class="variablelist">
+        <p class="title">
+          <strong>معنى الخيارات في الأوامر:</strong>
+        </p>
+        <dl class="variablelist">
+          <dt>
+            <span class="term"><em class="parameter"><code>-s
+            /bin/bash</code></em></span>
+          </dt>
+          <dd>
+            <p>
+              هذا يجعل <span class="command"><strong>bash</strong></span>
+              القشرة الافتراضية للمستخدم <code class="systemitem">lfs</code>.
+            </p>
+          </dd>
+          <dt>
+            <span class="term"><em class="parameter"><code>-g
+            lfs</code></em></span>
+          </dt>
+          <dd>
+            <p>
+              هذا الخيار يضيف المستخدم <code class="systemitem">lfs</code> إلى مجموعة 
+			  <code class="systemitem">lfs</code>.
+            </p>
+          </dd>
+          <dt>
+            <span class="term"><em class=
+            "parameter"><code>-m</code></em></span>
+          </dt>
+          <dd>
+            <p>
+              يؤدي هذا إلى إنشاء المجلد الرئيسي الى<code class=
+              "systemitem">lfs</code>.
+            </p>
+          </dd>
+          <dt>
+            <span class="term"><em class="parameter"><code>-k
+            /dev/null</code></em></span>
+          </dt>
+          <dd>
+            <p>
+              هذا العامل يمنع نسخ الملفات الممكنة من
+				المجلد الهيكل (الافتراضي هو<code class=
+              "filename">/etc/skel</code>) عن طريق تغيير موقع الإدخال إلى جهاز خاص وهمي.
+            </p>
+          </dd>
+          <dt>
+            <span class="term"><em class=
+            "parameter"><code>lfs</code></em></span>
+          </dt>
+          <dd>
+            <p>
+              هذا هو الاسم الفعلي للمجموعة والمستخدم الذي تم إنشاؤه.
+            </p>
+          </dd>
+        </dl>
+      </div>
+      <p>
+        لتسجيل الدخول كـ <code class="systemitem">lfs</code>(بدلا من التبديل إلى المستخدم
+		<code class="systemitem">lfs</code>عند تسجيل الدخول كـ
+		<code class="systemitem">root</code>، والتي لا تتطلب من المستخدم
+        <code class="systemitem">lfs</code> أن يكون لديه كلمة السر)، نضع  كلمة السر لـ 
+        <code class="systemitem">lfs</code> :
+      </p>
+      <pre class="userinput">
+<kbd class="command">passwd lfs</kbd>
+</pre>
+      <p>
+        نمنح <code class="systemitem">lfs</code> الوصول الكامل إلى <code class=
+        "filename">LFS/tools$</code> بجعل <code class=
+        "systemitem">lfs</code> مالك المجلد:
+      </p>
+      <pre class="userinput">
+<kbd class="command">chown -v lfs $LFS/tools</kbd>
+</pre>
+      <p>
+        إذا تم إنشاء مجلد عمل منفصل كما اقترح، إعطاء المستخدم
+        <code class="systemitem">lfs</code>ملكية هذا المجلد:
+      </p>
+      <pre class="userinput">
+<kbd class="command">chown -v lfs $LFS/sources</kbd>
+</pre>
+      <p>
+        بعد ذلك، تسجيل الدخول كمستخدم<code class="systemitem">lfs</code>. ويمكن القيام
+		بذلك عن طريق وحدة تحكم افتراضية، من خلال مدير 
+		العرض، أو مع الأمر البديل التالي:
+      </p>
+      <pre class="userinput">
+<kbd class="command">su - lfs</kbd>
+</pre>
+      <p>
+        الاشارة <span class="quote">&ldquo;<span class="quote"><em class=
+        "parameter"><code>-</code></em></span>&rdquo;</span> ترشد
+        <span class="command"><strong>su</strong></span>  لبدء تسجيل الدخول
+		القشرة في مقابل غير تسجيل الدخول القشرة، الفرق بين هذين
+		النوعين من القشرة يمكن العثور عليها بالتفصيل في  <code class=
+        "filename">(bash(1</code> و <span class="command"><strong>info
+        bash</strong></span>.
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="creatingtoolsdir.html" title=
+          "Creating the $LFS/tools Directory">السابق</a>
+          <p>
+            انشاء الملف LFS/tools$
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="settingenvironment.html" title=
+          "Setting Up the Environment">التالى</a>
+          <p>
+            إعداد المحيط
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter04.html" title=
+          "Chapter&nbsp;4.&nbsp;Final Preparations">إلى أعلى</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - Version 8.1 ">الصفحة الرئيسية</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

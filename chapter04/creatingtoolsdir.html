@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<html dir="rtl" lang="ar">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      4.2. انشاء الملف LFS/tools$
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.78.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body class="lfs" id="lfs-8.1">
+    <div class="navheader">
+      <h4>
+        لينكس من الصفر - الإصدار 8.1
+      </h4>
+      <h3>
+      الفصل 4. التحضيرات النهائي
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="introduction.html" title=
+          "Introduction">السابق</a>
+          <p>
+            المقدمة
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="addinguser.html" title=
+          "Adding the LFS User">التالى</a>
+          <p>
+            إضافة المستخدم لمص
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter04.html" title=
+          "Chapter&nbsp;4.&nbsp;Final Preparations">إلى أعلى</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - Version 8.1 ">الصفحة الرئيسية</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="ch-tools-creatingtoolsdir" name=
+        "ch-tools-creatingtoolsdir"></a>4.2. انشاء الملف LFS/tools$
+      </h1>
+      <p>
+        جميع البرامج التي تم بنائها في <a class="xref" href=
+        "../chapter05/chapter05.html" title=
+        "Chapter&nbsp;5.&nbsp;Constructing a Temporary System">الفصل 5</a>
+        سيتم تثبيتها تحت <code class="filename">LFS/tools$</code> لإبقائهم منفصلين عن
+		البرامج المبنية في <a class="xref"
+        href="../chapter06/chapter06.html" title=
+        "Chapter&nbsp;6.&nbsp;Installing Basic System Software">الفصل 6
+		</a>. البرامج المبنية هنا هي أدوات مؤقتة ولن تكون جزءا من
+			نظام لمص النهائي. من خلال الحفاظ على هذه البرامج في مجلد
+			منفصل، يمكن بسهولة التخلص منه لاحقا بعد استخدامه. و هذا أيضا
+			يمنع هذه البرامج من ان تنتهي في المجلدات المضيف المنتجة (من السهل
+			القيام به عن طريق الصدفة في <a class="xref"
+        href="../chapter05/chapter05.html" title=
+        "Chapter&nbsp;5.&nbsp;Constructing a Temporary System">الفصل 5
+		</a>).
+      </p>
+      <p>
+        إنشاء المجلد المطلوب عن طريق تشغيل ما يلي كـ
+        <code class="systemitem">root</code>:
+      </p>
+      <pre class="userinput">
+<kbd class="command">mkdir -v $LFS/tools</kbd>
+</pre>
+      <p>
+        الخطوة التالية هي إنشاء لـ<code class="filename">/tools</code> رابط لين على النظام ال
+		مضيف. وهذا يشير إلى المجلد الذي تم إنشاؤه 
+		حديثا على قسم لمص. تشغيل هذا الأمر كـ<code class=
+        "systemitem">root</code> كذلك:
+      </p>
+      <pre class="userinput">
+<kbd class="command">ln -sv $LFS/tools /</kbd>
+</pre>
+      <div class="admon note">
+        <img alt="[Note]" src="../images/note.png" />
+        <h3>
+          ملاحظة
+        </h3>
+        <p>
+          الأمر أعلاه صحيح. الأمر<span class=
+          "command"><strong>ln</strong></span>  يحتوي على عدد قليل من الاختلافات النحوية،
+			لذلك تحقق من <span class="command"><strong>info
+          coreutils ln</strong></span> و <code class=
+          "filename">(ln(1</code> قبل الإبلاغ عما قد تعتقد
+			أنه خطأ.
+        </p>
+      </div>
+      <p>
+        الرابط اللين الذي انشأناه يمكّن من بناء سلسلة الأدوات بحيث يشير دائما إلى
+		<code class="filename">tools/</code>، وهذا يعني أن المترجم، المجمع والرابط سيعملون
+		معا في الفصل الخامس (عندما لا نزال نستخدم بعض الأدوات من
+		المضيف) وفي المرحلة التالية (عندما
+		نكون<span class="quote">&ldquo;<span class=
+        "quote">chrooted</span>&rdquo;</span> إلى قسم لمص).
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="introduction.html" title=
+          "Introduction">السابق</a>
+          <p>
+            المقدمة
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="addinguser.html" title=
+          "Adding the LFS User">التالى</a>
+          <p>
+            إضافة المستخدم لمص
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter04.html" title=
+          "Chapter&nbsp;4.&nbsp;Final Preparations">إلى أعلى</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - Version 8.1 ">الصفحة الرئيسية</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
