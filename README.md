@@ -21,8 +21,6 @@ Chapter 08 - not yet
 
 Chapter 09 - not yet
 
-Chapter 01 - not yet
-
 prologue - not yet
 
 scripts - not yet
