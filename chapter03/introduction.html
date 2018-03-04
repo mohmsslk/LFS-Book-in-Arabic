@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<html dir="rtl" lang="ar">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      3.1. المقدمة
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.78.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body class="lfs" id="lfs-8.1">
+    <div class="navheader">
+      <h4>
+        لينكس من الصفر - الإصدار 8.1
+      </h4>
+      <h3>
+         الفصل 3. الحزم والرقع
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="chapter03.html" title=
+          "Packages and Patches">السابق</a>
+          <p>
+            الحزم والرقع
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="packages.html" title="All Packages">التالى</a>
+          <p>
+            جميع الحزم
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter03.html" title=
+          "Chapter&nbsp;3.&nbsp;Packages and Patches">إلى أعلى</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - Version 8.1 ">الصفحة الرئيسية</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="materials-introduction" name="materials-introduction"></a>3.1. المقدمة 
+      </h1>
+      <p>
+        يتضمن هذا الفصل قائمة من الحزم التي تحتاج إلى التحميل من أجل بناء نظام لينكس الأساسي.
+		تتوافق أرقام الإصدارات المدرجة مع إصدارات البرامج المعروفة بنجاح استخدماتها،
+		ويستند هذا الكتاب إلى استخدامها.
+		نوصي بشدة بعدم استخدام إصدارات أحدث لأن أوامر بناء لاحد الاصدارات قد لا تعمل مع إصدار أحدث.
+		الحزم ذات الاصدارات الحديثة قد يكون لديها مشاكل التي تتطلب حلول. وسيتم العمل على الحلول واستقرارها 
+		في النسخة المطورة للكتاب.
+      </p>
+      <p>
+        قد لا يكون الوصول إلى مواقع التنزيل متاحا دائما. في حالة تغيير موقع التنزيل
+		منذ نشر هذا الكتاب، فإن غوغل (<a class=
+        "ulink" href="http://www.google.com/">http://www.google.com/</a>)
+        يوفر محرك بحث مفيد لمعظم الحزم. إذا لم ينجح هذا البحث،
+		فجرب إحدى الوسائل البديلة للتنزيل التي
+		تمت مناقشتها في <a class="ulink" href=
+        "http://www.linuxfromscratch.org/lfs/packages.html#packages">http://www.linuxfromscratch.org/lfs/packages.html#packages</a>.
+      </p>
+      <p>
+        الحزم والرقع المنزلة سوف تحتاج إلى تخزين في مكان ما
+		هو متاح بسهولة طوال فترة البناء. مطلوب أيضا مكان
+		للعمل مخصص لفك المصادر وبنائها. الملف 
+        <code class="filename">LFS/sources$</code> يمكن استخدامه على
+		حد سواء كمكان لتخزين الحزم والرقع وكمكان للعمل.
+		باستخدام هذا الملف، سيتم وضع العناصر المطلوبة على
+		قسم لمص وسوف تكون متاحة خلال جميع مراحل
+		عملية البناء.
+      </p>
+      <p>
+        للإنشاء هذا الملف، تنفيذ الأمر التالي، كمستخدم
+        <code class="systemitem">root</code>, قبل بدء مرحلة التنزيل:
+      </p>
+      <pre class="userinput">
+<kbd class="command">mkdir -v $LFS/sources</kbd>
+</pre>
+      <p>
+        جعل هذا الدليل قابل للكتابة ولزج. <span class=
+        "quote">&ldquo;<span class="quote">لزج</span>&rdquo;</span> يعني
+		أنه حتى إذا كان هناك مستخدمين متعددين
+		لديهم إذن الكتابه على الملف، فإن مالك الملف
+		فقط يمكنه حذف هذا الملف. سيقوم الأمر
+		التالي بتفعيل قابلية الكتابة واللزج:
+	</p>
+      <pre class="userinput">
+<kbd class="command">chmod -v a+wt $LFS/sources</kbd>
+</pre>
+      <p>
+        الطريقة السهلة لتحميل جميع الحزم والرقع هي باستخدام
+        <a class="ulink" href="../wget-list">wget-list</a> كمدخل ل
+        <span class="command"><strong>wget</strong></span>. فمثلا:
+      </p>
+      <pre class="userinput">
+<kbd class=
+"command">wget --input-file=wget-list --continue --directory-prefix=$LFS/sources</kbd>
+</pre>
+      <p>
+        بالإضافة إلى ذلك، بدءا من لمص-7.0، هناك ملف منفصل،
+        <a class="ulink" href="../md5sums">md5sums</a>، والذي يمكن استخدامه
+		للتحقق من أن كافة الحزم الصحيحة متوفرة قبل المتابعة.
+		ضع هذا الملف في <code class="filename">LFS/sources$</code> و
+		شغل:
+      </p>
+      <pre class="userinput">
+<kbd class="command">pushd $LFS/sources
+md5sum -c md5sums
+popd</kbd>
+</pre>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="chapter03.html" title=
+          "Packages and Patches">السابق</a>
+          <p>
+            الحزم والرقع
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="packages.html" title="All Packages">التالى</a>
+          <p>
+            جميع الحزم
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="chapter03.html" title=
+          "Chapter&nbsp;3.&nbsp;Packages and Patches">إلى أعلى</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Linux From Scratch - Version 8.1 ">الصفحة الرئيسية</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
